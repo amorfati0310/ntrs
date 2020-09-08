@@ -1,10 +1,13 @@
 import { InferGetServerSidePropsType } from 'next'
 
+import TodoTitle from '../components/TodoTitle';
+import TodoForm from '../components/TodoForm';
+
 type Todo = {
-    completed: Boolean;
-    id: Number;
-    title: String;
-    userId: Number;
+    completed: boolean;
+    id: number;
+    title: string;
+    userId: number;
 }
 
 type Todos = Array<Todo>
@@ -28,11 +31,12 @@ function TodoPage({ data }: InferGetServerSidePropsType<typeof getServerSideProp
   // Render data...
   return (
   <div>
-      <h1>TODOS</h1>
+      <TodoTitle title="todos"/>
+      <TodoForm/>
       <ul>
         
       {todos.map(({id, title, completed}) => (      
-      <li>
+      <li key={id}>
         {title}
         <button>{completed ? 'v': 'x'}
         </button>
