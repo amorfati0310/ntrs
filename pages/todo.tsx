@@ -3,19 +3,19 @@ import { InferGetServerSidePropsType } from 'next'
 import TodoTitle from '../components/TodoTitle';
 import TodoForm from '../components/TodoForm';
 
-type Todo = {
+export type Todo = {
     completed: boolean;
     id: number;
     title: string;
     userId: number;
 }
 
-type Todos = Array<Todo>
+export type Todos = Array<Todo>
 
 export const getServerSideProps = async () => {
   // This gets called on every request
   const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
-  const data: Todos = await res.json()
+  const data:Todos = await res.json()
   // Pass data to the page via props
   return {
     props: {
