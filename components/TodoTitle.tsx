@@ -5,7 +5,7 @@ interface TodoProps {
     title: string;
 }
 
-const STitle = styled.h1`
+const TitleBlock = styled.h1`
     font-weight: 100;
     font-size: 96px;
     margin-top: 16px;
@@ -17,7 +17,7 @@ const STitle = styled.h1`
 
 function TodoTitle({title}:TodoProps){
     return (
-        <STitle>{title}</STitle>
+        <TitleBlock>{title}</TitleBlock>
     )
 }
 

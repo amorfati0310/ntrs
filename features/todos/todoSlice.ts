@@ -21,16 +21,20 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodo(state, { payload }: PayloadAction<Todo>){
+    addTodo(state, { payload }: PayloadAction<string>){
         state.todos.push({
             id: nextTodoId++,
             completed: false,
             userId: 1,
-            title: payload.title
+            title: payload
         })
     },
-    toggleTodo(state, action: PayloadAction<Todo>) {
-        let todo = state.todos.find(todo => todo.id === action.payload.id);
+    removeTodo(state, { payload }: PayloadAction<number>) {
+        // TODO 그냥 filter return 하면 왜 안되는지? 알아보기
+        state.todos = state.todos.filter(todo => todo.id !== payload)
+    },
+    toggleTodo(state, {payload}: PayloadAction<number>) {
+        let todo = state.todos.find(todo => todo.id === payload);
         if (!todo) {
             return;
         }
@@ -39,7 +43,7 @@ const todosSlice = createSlice({
   }
 })
 
-export const { addTodo } = todosSlice.actions
+export const { addTodo, removeTodo, toggleTodo } = todosSlice.actions
 
 export default todosSlice.reducer
 
