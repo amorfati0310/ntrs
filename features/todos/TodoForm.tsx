@@ -9,7 +9,6 @@ function TodoForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log('text', text)
     if (!text.trim()) {
       return;
     }
@@ -18,7 +17,7 @@ function TodoForm() {
     setText('');
   }
 
-  function handleChagne(e: React.ChangeEvent<HTMLInputElement>) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setText(e.target.value)
   }
 
@@ -27,7 +26,7 @@ function TodoForm() {
       <input
         placeholder="What need to be done"
         value={text}
-        onChange={handleChagne}
+        onChange={onChange}
       />
     </TodoFormBlock>
   )
