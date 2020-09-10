@@ -31,21 +31,21 @@ const LabelBlock = styled.label`
 export default function TodoListItem({ completed, title, id }: TodoProps) {
   const dispatch = useDispatch();
 
-  function handleRemove(id: number){
+  function handleRemove() {
     dispatch(removeTodo(id))
   }
 
-  function handleToggleTodo(id: number) {
+  function handleToggleTodo() {
     dispatch(toggleTodo(id))
   }
 
   return (
     <TodoItemBlock completed={completed}>
-      <button onClick={() => handleToggleTodo(id)}>''</button>
+      <button onClick={handleToggleTodo}>''</button>
       <LabelBlock>
         {title}
       </LabelBlock>
-      <button onClick={() => handleRemove(id)}>X</button>
+      <button onClick={handleRemove}>X</button>
     </TodoItemBlock>
   )
 }
