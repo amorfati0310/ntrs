@@ -8,17 +8,13 @@ import TodoList from '../features/todos/TodoList';
 import FilterButton from '../features/visibilityFilter/filterButton'
 import { VisibilityFilter } from '../features/visibilityFilter/visibiltyFilters';
 
+import { Todo } from '../features/todos/types';
 
-export type Todo = {
-    completed: boolean;
-    id: number;
-    title: string;
-    userId: number;
-}
 
-export type Todos = Array<Todo>
 
-export const getServerSideProps:GetServerSideProps<Todos> = async () => {
+type serverTodosType = { data: Array<Todo> }
+
+export const getServerSideProps:GetServerSideProps<serverTodosType> = async (context) => {
   // This gets called on every request
   // const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
   // const data:Todos = await res.json()
