@@ -10,18 +10,16 @@ import { VisibilityFilter } from '../features/visibilityFilter/visibiltyFilters'
 
 import { Todo } from '../features/todos/types';
 
-
-
 type serverTodosType = { data: Array<Todo> }
 
-export const getServerSideProps:GetServerSideProps<serverTodosType> = async (context) => {
+export const getServerSideProps: GetServerSideProps<serverTodosType> = async (context) => {
   // This gets called on every request
   // const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
   // const data:Todos = await res.json()
   // // Pass data to the page via props
   return {
     props: {
-     data: []
+      data: []
     },
   }
 }
@@ -38,16 +36,16 @@ function TodoPage({ data }: InferGetServerSidePropsType<typeof getServerSideProp
   // console.log('todoss', todos)
   // Render data...
   return (
-  <div>
-      <TodoTitle title="todos"/>
+    <div>
+      <TodoTitle title="todos" />
       <MainBlock>
         <TodoForm />
-        <TodoList/>
+        <TodoList />
         <FilterButton visibilityFilter={VisibilityFilter.ShowAll} text={"All"} />
-      <FilterButton visibilityFilter={VisibilityFilter.ShowActive} text={"Active"} />
-      <FilterButton visibilityFilter={VisibilityFilter.ShowCompleted} text={"Completed"} />
+        <FilterButton visibilityFilter={VisibilityFilter.ShowActive} text={"Active"} />
+        <FilterButton visibilityFilter={VisibilityFilter.ShowCompleted} text={"Completed"} />
       </MainBlock>
-  </div>
+    </div>
   )
 }
 

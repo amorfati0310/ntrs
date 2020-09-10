@@ -52,27 +52,27 @@ const TodoFormBlock = styled.form`
       width: 100%;
       font-size: 24px;
       line-height: 1.4em;
-      
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-style: italic;
+        font-weight: 300;
+        color: #e6e6e6;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        font-style: italic;
+        font-weight: 300;
+        color: #e6e6e6;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        font-style: italic;
+        font-weight: 300;
+        color: #e6e6e6;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        font-style: italic;
+        font-weight: 300;
+        color: #e6e6e6;
+      }
     }
 
-    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      font-style: italic;
-      font-weight: 300;
-      color: #e6e6e6;
-    }
-    ::-moz-placeholder { /* Firefox 19+ */
-      font-style: italic;
-      font-weight: 300;
-      color: #e6e6e6;
-    }
-    :-ms-input-placeholder { /* IE 10+ */
-      font-style: italic;
-      font-weight: 300;
-      color: #e6e6e6;
-    }
-    :-moz-placeholder { /* Firefox 18- */
-      font-style: italic;
-      font-weight: 300;
-      color: #e6e6e6;
-    }
+    
 `;
