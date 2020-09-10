@@ -3,6 +3,38 @@ import { useDispatch } from 'react-redux'
 import { addTodo } from './todoSlice';
 import styled from '@emotion/styled';
 
+function TodoForm() {
+  const dispatch = useDispatch();
+  const [text, setText] = useState('')
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    console.log('text', text)
+    if (!text.trim()) {
+      return;
+    }
+    dispatch(addTodo(text))
+
+    setText('');
+  }
+
+  function handleChagne(e: React.ChangeEvent<HTMLInputElement>) {
+    setText(e.target.value)
+  }
+
+  return (
+    <TodoFormBlock onSubmit={handleSubmit}>
+      <input
+        placeholder="What need to be done"
+        value={text}
+        onChange={handleChagne}
+      />
+    </TodoFormBlock>
+  )
+}
+
+
+export default TodoForm;
 
 const TodoFormBlock = styled.form`
     display: flex;
@@ -20,44 +52,27 @@ const TodoFormBlock = styled.form`
       width: 100%;
       font-size: 24px;
       line-height: 1.4em;
+      
+    }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      font-style: italic;
+      font-weight: 300;
+      color: #e6e6e6;
     }
 `;
-
-interface TodoFormProps {
-
-}
-
-function TodoForm({}: TodoFormProps){
-  const dispatch = useDispatch();
-  const [text, setText] = useState('')
-
-  function handleSubmit(e: React.FormEvent){
-    e.preventDefault();
-    console.log('text', text)
-    if(!text.trim()){
-      return;
-    }
-    dispatch(addTodo(text))
-
-    setText('');
-  }
-
-  function handleChagne(e: React.ChangeEvent<HTMLInputElement>){
-    setText(e.target.value)
-  }
-
-  return (
-    <TodoFormBlock onSubmit={handleSubmit}>
-      <input 
-        placeholder="What need to be done"
-        value={text}
-        onChange={handleChagne}
-      />
-    </TodoFormBlock>
-  )
-}
-
-// TODO Place holder style 적용 
-
-export default TodoForm;
-

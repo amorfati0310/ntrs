@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { InferGetServerSidePropsType } from 'next'
+import { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
 import TodoTitle from '../components/TodoTitle';
 import TodoForm from '../features/todos/TodoForm';
@@ -18,7 +18,7 @@ export type Todo = {
 
 export type Todos = Array<Todo>
 
-export const getServerSideProps = async () => {
+export const getServerSideProps:GetServerSideProps<Todos> = async () => {
   // This gets called on every request
   // const res = await fetch('https://jsonplaceholder.typicode.com/todos/')
   // const data:Todos = await res.json()
