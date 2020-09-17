@@ -12,7 +12,7 @@ interface FilterButtonProps {
 export default function FilterButton({ visibilityFilter, text }: FilterButtonProps): JSX.Element {
     const dispatch = useDispatch();
 
-    const currentvisibilityFilter = useSelector((state: RootState) => state.visibilityFilter);
+  const currentvisibilityFilter = useSelector((state: RootState) => state.visibilityFilter);
 
     return (
         <button
