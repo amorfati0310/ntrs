@@ -1,17 +1,15 @@
-import '../styles/globals.css'
-// import type? 
-import type { AppProps /*, AppContext */ } from 'next/app'
+import '../styles/globals.css';
+// import type?
+import type { AppProps /* , AppContext */ } from 'next/app';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
-import { Provider } from 'react-redux'
-import { store } from '../store'
-
-
-function MyApp({ Component, pageProps }:AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
     </Provider>
-  )
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for
@@ -26,5 +24,4 @@ function MyApp({ Component, pageProps }:AppProps) {
 //   return { ...appProps }
 // }
 
-
-export default MyApp
+export default MyApp;

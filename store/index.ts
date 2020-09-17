@@ -1,21 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
-import rootReducer, {RootState} from './rootReducer'
-
-
-
-
-
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './rootReducer';
 
 export const store = configureStore({
-    reducer: rootReducer
+  reducer: rootReducer,
 });
 
-
-export default store
-export type AppDispatch = typeof store.dispatch
+export default store;
+export type AppDispatch = typeof store.dispatch;
 // Export a hook that can be reused to resolve types
-export const useAppDispatch = () => useDispatch<AppDispatch>() 
-//  TODO middleware 쓰면 
+// export const useAppDispatch = () => useDispatch<AppDispatch>();
+//  TODO middleware 쓰면
 // export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
-
