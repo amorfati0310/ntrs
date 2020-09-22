@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { ParsedUrlQuery } from 'querystring';
 
 import Header from 'components/Header';
+import Banner from 'components/Banner';
 
 
 
@@ -34,6 +35,7 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
     return (
         <div>
             <Header title="conduit" />
+            <Banner />
             {tags.map(tag => (<span key={tag}>{tag}</span>))}
         </div>
     );

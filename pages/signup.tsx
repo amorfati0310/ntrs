@@ -33,7 +33,7 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
     return (
         <div>
             <Header title="conduit" />
-             signin
+            signup
         </div>
     );
 }
