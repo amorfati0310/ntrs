@@ -4,27 +4,58 @@ import { ParsedUrlQuery } from 'querystring';
 
 import Header from 'components/Header';
 import Banner from 'components/Banner';
+import Tags from 'components/Tags';
 
 
+type Author = {
+    bio: null;
+    following: boolean;
+    image: string;
+    username: string;
+}
 
-type serverTagsType = { tags: string[] };
+type Article = {
+    author: Author;
+    body: string;
+    createdAt: string;
+    description: string;
+    favorited: boolean;
+    favoritesCount: number;
+    slug: string;
+    tagList: Array<string>
+    title: string;
+    updatedAt: string;
+}
+
+type serverTagsType = { tags: Array<string> };
+
+type serverTagsArticles = {
+    tags: Array<Article>, articlesCount: number;
+};
 
 export const getServerSideProps: GetServerSideProps<serverTagsType, ParsedUrlQuery> = async (context): Promise<GetServerSidePropsResult<serverTagsType>> => {
     // This gets called on every request
-    const res = await fetch('https://conduit.productionready.io/api/tags');
-    const data: serverTagsType = await res.json();
+    // const tagRes = await fetch('https://conduit.productionready.io/api/tags');
+    // const tags: serverTagsType = await tagRes.json();
+
+    // const articleRes = await fetch('https://conduit.productionready.io/api/articles');
+    // const articles: serverTagsType = await articleRes.json();
+
+
     // // Pass data to the page via props
     return {
         props: {
-            data,
+            tags,
+            articles,
         }
     };
 };
 
 const MainBlock = styled.main`
   margin: 0 auto;
-  width: 600px;
-  align-items: center;
+  width: 1170px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
@@ -36,7 +67,10 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
         <div>
             <Header title="conduit" />
             <Banner />
-            {tags.map(tag => (<span key={tag}>{tag}</span>))}
+            <MainBlock>
+                <section>Cards</section>
+                <Tags tags={tags} />
+            </MainBlock>
         </div>
     );
 }
