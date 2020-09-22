@@ -2,8 +2,6 @@ import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsResu
 import styled from '@emotion/styled';
 import { ParsedUrlQuery } from 'querystring';
 
-import Header from 'components/Header';
-
 
 
 type serverTagsType = { tags: string[] };
@@ -33,7 +31,6 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
     // Render data...
     return (
         <div>
-            <Header title="conduit" />
             {tags.map(tag => (<span key={tag}>{tag}</span>))}
         </div>
     );
