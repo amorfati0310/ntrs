@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+interface BannerProps {
+    bg?: string;
+}
 
-
-function Banner(): JSX.Element {
+function Banner({ bg = '#5CB85C' }: BannerProps): JSX.Element {
 
     return (
-        <BannerBlock>
+        <BannerBlock bg={bg}>
             <Title>conduit</Title>
             <SubTitle>A place to share your knowledge.</SubTitle>
         </BannerBlock>
@@ -16,12 +18,12 @@ function Banner(): JSX.Element {
 export default Banner;
 
 
-const BannerBlock = styled.section`
+const BannerBlock = styled.section<BannerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #5CB85C;
+  background-color: ${({ bg }) => bg};
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: inset 0 8px 8px -8px rgba(0, 0, 0, 0.3), inset 0 -8px 8px -8px rgba(0, 0, 0, 0.3);

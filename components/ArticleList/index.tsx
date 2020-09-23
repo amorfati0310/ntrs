@@ -1,6 +1,10 @@
-import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import Maybe from "components/Maybe";
+import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import React, { useMemo } from 'react';
+import Maybe from 'components/Maybe';
+import useSWR from 'swr';
+
+import ArticlePreview from 'components/ArticlePreview';
 
 // import ArticlePreview from "components/article/ArticlePreview";
 // import ErrorMessage from "components/common/ErrorMessage";
@@ -12,12 +16,12 @@ import Maybe from "components/Maybe";
 //     usePageCountState,
 //     usePageCountDispatch,
 // } from "lib/context/PageCountContext";
-import { SERVER_BASE_URL, DEFAULT_LIMIT } from "lib/utils/constant";
+import { SERVER_BASE_URL, DEFAULT_LIMIT } from 'lib/utils/constant';
 // import fetcher from "lib/utils/fetcher";
 
 
 
-const EmptyMessage = styled("div")`
+const EmptyMessage = styled('div')`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1.5rem 0;
 `;
@@ -32,7 +36,7 @@ const ArticleList = () => {
     const router = useRouter();
     const { asPath, pathname, query } = router;
     const { favorite, follow, tag, pid } = query;
-    const isProfilePage = pathname.startsWith(`/profile`);
+    const isProfilePage = pathname.startsWith('/profile');
 
     const getFetchURL = () => {
         switch (true) {

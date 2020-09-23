@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from '@emotion/styled';
 
 interface TodoProps {
@@ -15,10 +15,10 @@ const TitleBlock = styled.h1`
 `;
 
 
-function TodoTitle({title}:TodoProps){
+function TodoTitle({ title }: TodoProps) {
     return (
         <TitleBlock>{title}</TitleBlock>
-    )
+    );
 }
 
 export default TodoTitle;

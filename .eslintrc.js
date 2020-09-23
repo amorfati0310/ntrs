@@ -23,5 +23,6 @@ module.exports = {
     semi: ['error', 'always'],
     'no-console': 1,
     'react/react-in-jsx-scope': 0,
+    quotes: [2, 'single', 'avoid-escape'],
   },
 };

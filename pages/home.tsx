@@ -1,12 +1,13 @@
+import React from 'react';
 import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsResult } from 'next';
-import Head from "next/head";
+import Head from 'next/head';
 import styled from '@emotion/styled';
 import { ParsedUrlQuery } from 'querystring';
 
 import Header from 'components/Header';
 import Banner from 'components/Banner';
 import Tags from 'components/Tags';
-import React from 'react';
+import Articles from 'components/Articles';
 
 
 type Author = {
@@ -29,19 +30,21 @@ type Article = {
     updatedAt: string;
 }
 
-type serverTagsType = { tags: Array<string> };
 
-type serverTagsArticles = {
-    tags: Array<Article>, articlesCount: number;
+
+type serverResponseType = {
+    tags: Array<string>;
+    articles: Array<Article>;
+    articlesCount: number;
 };
 
-export const getServerSideProps: GetServerSideProps<serverTagsType, ParsedUrlQuery> = async (context): Promise<GetServerSidePropsResult<serverTagsType>> => {
+export const getServerSideProps: GetServerSideProps<serverResponseType, ParsedUrlQuery> = async (context): Promise<GetServerSidePropsResult<serverResponseType>> => {
     // This gets called on every request
-    // const tagRes = await fetch('https://conduit.productionready.io/api/tags');
-    // const tags: serverTagsType = await tagRes.json();
+    const tagRes = await fetch('https://conduit.productionready.io/api/tags');
+    const { tags }: Pick<serverResponseType, 'tags'> = await tagRes.json();
 
-    // const articleRes = await fetch('https://conduit.productionready.io/api/articles');
-    // const articles: serverTagsType = await articleRes.json();
+    const articleRes = await fetch('https://conduit.productionready.io/api/articles');
+    const { articles, articlesCount }: Pick<serverResponseType, 'articles' | 'articlesCount'> = await articleRes.json();
 
 
     // // Pass data to the page via props
@@ -49,6 +52,7 @@ export const getServerSideProps: GetServerSideProps<serverTagsType, ParsedUrlQue
         props: {
             tags,
             articles,
+            articlesCount,
         }
     };
 };
@@ -60,10 +64,10 @@ const MainBlock = styled.main`
   justify-content: space-between;
 `;
 
-function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
+function HomePage({ tags, articles, articlesCount }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
     // will resolve posts to type Data
     // const tags = data.tag.filter(v => v);
-    console.log(tags);
+    console.log(tags, articles, articlesCount);
     // Render data...
     return (
         <>
@@ -78,7 +82,7 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
                 <Header title="conduit" />
                 <Banner />
                 <MainBlock>
-                    <section>Cards</section>
+                    <Articles articles={articles} />
                     <Tags tags={tags} />
                 </MainBlock>
             </div>
