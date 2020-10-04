@@ -15,7 +15,7 @@ type Author = {
     following: boolean;
     image: string;
     username: string;
-}
+};
 
 type Article = {
     author: Author;
@@ -25,10 +25,10 @@ type Article = {
     favorited: boolean;
     favoritesCount: number;
     slug: string;
-    tagList: Array<string>
+    tagList: Array<string>;
     title: string;
     updatedAt: string;
-}
+};
 
 
 
