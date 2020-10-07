@@ -8,6 +8,7 @@ import Header from 'components/Header';
 import Banner from 'components/Banner';
 import Tags from 'components/Tags';
 import Articles from 'components/Articles';
+import Paginate from 'components/Paginate';
 
 
 type Author = {
@@ -69,6 +70,10 @@ function HomePage({ tags, articles, articlesCount }: InferGetServerSidePropsType
     // const tags = data.tag.filter(v => v);
     console.log(tags, articles, articlesCount);
     // Render data...
+    const articlesPerPage = 20;
+    const pageCount = Math.ceil(articlesCount / articlesPerPage);
+
+
     return (
         <>
             <Head>
@@ -84,6 +89,7 @@ function HomePage({ tags, articles, articlesCount }: InferGetServerSidePropsType
                 <MainBlock>
                     <Articles articles={articles} />
                     <Tags tags={tags} />
+                    <Paginate pageCount={pageCount} />
                 </MainBlock>
             </div>
         </>
