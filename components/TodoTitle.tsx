@@ -15,7 +15,7 @@ const TitleBlock = styled.h1`
 `;
 
 
-function TodoTitle({ title }: TodoProps) {
+function TodoTitle({ title }: TodoProps): JSX.Element {
     return (
         <TitleBlock>{title}</TitleBlock>
     );

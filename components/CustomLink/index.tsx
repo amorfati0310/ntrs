@@ -5,23 +5,28 @@ import React from 'react';
 interface CustomLinkProps {
     href: string;
     as: string;
-    className?: string;
     onClick?: () => void;
     children: React.ReactNode;
+    isActive: boolean;
 }
 
-const Anchor = styled('a')`
-  text-decoration: none !important;
+const Anchor = styled('a') <{ isActive: boolean }>`
+  text-decoration: none;
+  padding: 10px;
+  color: ${props => props.isActive ? '#5cb85c' : 'rgba(0, 0, 0, 0.3)'};
+  &:hover {
+      color: rgba(0,0,0,0.8);
+  }
 `;
 
 const CustomLink = ({
-    className,
     href,
     as,
     children,
+    isActive
 }: CustomLinkProps) => (
         <Link href={href} as={as} passHref >
-            <Anchor className={className || ''}>{children}</Anchor>
+            <Anchor isActive={isActive}>{children}</Anchor>
         </Link>
     );
 

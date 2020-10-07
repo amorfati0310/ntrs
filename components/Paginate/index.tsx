@@ -6,19 +6,22 @@ import { setPage } from 'features/pagninate/paginateSlice';
 
 interface PaginateProps {
     pageCount: number;
+    pagginationHandler: (page: number) => void
 }
 
-function Paginate({ pageCount }: PaginateProps): JSX.Element {
+function Paginate({ pageCount, pagginationHandler }: PaginateProps): JSX.Element {
     const dispatch = useDispatch();
 
     const handlePageButtonClick = React.useCallback(
         (selectedPage: number) => {
             // e.preventDefault();
             dispatch(setPage(selectedPage));
+            pagginationHandler(selectedPage);
         },
         []
     );
 
+    // TODO TS Lint Error 
     const hasPaginate = pageCount > 1;
     return (
         <Maybe test={hasPaginate}>

@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { ParsedUrlQuery } from 'querystring';
 
 import Header from 'components/Header';
+import CustomLink from 'components/CustomLink';
+import SignInForm from 'components/SignInForm';
 
 
 type serverTagsType = { tags: string[] };
@@ -25,6 +27,18 @@ const MainBlock = styled.main`
   align-items: center;
 `;
 
+const Title = styled.h1`
+    text-align: center;
+`;
+
+const SignupLinkWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+
+
 function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element {
     // will resolve posts to type Data
     // const tags = data.tag.filter(v => v);
@@ -33,7 +47,19 @@ function HomePage({ data: { tags } }: InferGetServerSidePropsType<typeof getServ
     return (
         <div>
             <Header title="conduit" />
-             signin
+            <MainBlock>
+                <Title>Sign in</Title>
+                <SignupLinkWrapper>
+                    <CustomLink
+                        isActive
+                        href="/signup"
+                        as="/signup"
+                    >
+                        Need an account?
+                </CustomLink>
+                </SignupLinkWrapper>
+                <SignInForm />
+            </MainBlock>
         </div>
     );
 }

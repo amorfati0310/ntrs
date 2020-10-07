@@ -17,7 +17,6 @@ const paginateSlice = createSlice({
   initialState,
   reducers: {
     setPage(state, { payload }: PayloadAction<number>) {
-      console.log('payload', payload);
       state.paginate = payload || 1;
     },
   },
@@ -27,4 +26,4 @@ export const { setPage } = paginateSlice.actions;
 
 export default paginateSlice.reducer;
 
-export const paginateSelector = (state: PaginateState) => state.paginate;
+export const paginateSelector = (state: PaginateState): number => state.paginate;
